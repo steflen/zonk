@@ -1,0 +1,103 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/host-dashboard/src",
+  "prefix": "zonk",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/host-dashboard",
+        "index": "apps/host-dashboard/src/index.html",
+        "main": "apps/host-dashboard/src/main.ts",
+        "polyfills": "apps/host-dashboard/src/polyfills.ts",
+        "tsConfig": "apps/host-dashboard/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/host-dashboard/src/favicon.ico",
+          "apps/host-dashboard/src/assets"
+        ],
+        "styles": ["apps/host-dashboard/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/host-dashboard/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/host-dashboard/src/environments/environment.ts",
+              "with": "apps/host-dashboard/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/host-dashboard/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:module-federation-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "host-dashboard:build:production"
+        },
+        "development": {
+          "browserTarget": "host-dashboard:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200,
+        "publicHost": "http://localhost:4200"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "host-dashboard:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/host-dashboard/**/*.ts",
+          "apps/host-dashboard/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/host-dashboard"],
+      "options": {
+        "jestConfig": "apps/host-dashboard/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
