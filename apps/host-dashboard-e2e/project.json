@@ -21,6 +21,12 @@
       "options": {
         "lintFilePatterns": ["apps/host-dashboard-e2e/**/*.{js,ts}"]
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional"
+      }
     }
   },
   "tags": [],

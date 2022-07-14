@@ -113,6 +113,12 @@
           "buildTarget": "remote-login:build:production"
         }
       }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional"
+      }
     }
   },
   "tags": []
