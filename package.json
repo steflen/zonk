@@ -10,6 +10,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
+    "@jscutlery/semver": "^2.25.2",
     "@nrwl/angular": "^14.4.2",
     "@nrwl/cli": "14.4.2",
     "@nrwl/workspace": "14.4.2",
