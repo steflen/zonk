@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "host-dashboard": "apps/host-dashboard",
-    "host-dashboard-e2e": "apps/host-dashboard-e2e"
+    "host-dashboard-e2e": "apps/host-dashboard-e2e",
+    "remote-login": "apps/remote-login",
+    "remote-login-e2e": "apps/remote-login-e2e"
   }
 }

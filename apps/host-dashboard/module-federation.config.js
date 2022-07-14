@@ -1,4 +1,4 @@
 module.exports = {
   name: 'host-dashboard',
-  remotes: [],
+  remotes: ['remote-login'],
 };

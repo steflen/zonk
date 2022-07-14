@@ -1,0 +1,119 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/remote-login/src",
+  "prefix": "zonk",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/remote-login",
+        "index": "apps/remote-login/src/index.html",
+        "main": "apps/remote-login/src/main.ts",
+        "polyfills": "apps/remote-login/src/polyfills.ts",
+        "tsConfig": "apps/remote-login/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/remote-login/src/favicon.ico",
+          "apps/remote-login/src/assets"
+        ],
+        "styles": ["apps/remote-login/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/remote-login/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/remote-login/src/environments/environment.ts",
+              "with": "apps/remote-login/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/remote-login/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "remote-login:build:production"
+        },
+        "development": {
+          "browserTarget": "remote-login:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "remote-login:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/remote-login/**/*.ts",
+          "apps/remote-login/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/remote-login"],
+      "options": {
+        "jestConfig": "apps/remote-login/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "remote-login:build",
+        "port": 4201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "remote-login:build:development"
+        },
+        "production": {
+          "buildTarget": "remote-login:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
